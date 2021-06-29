@@ -8,8 +8,9 @@ local count=0
 local count1=0
 n=10
 declare -A local store
-declare -A local store1
+declare -A singlet
 for(( i=1;i<=n;i++ ))
+
 do
 coin=$((RANDOM%2))
 if [ $coin -eq $Head ]
@@ -26,10 +27,15 @@ echo "no of head come is "$count
 echo "no.of tail come is "$count1
 local percent=$(( $count*100 /$n ))
 local percent1=$(($count1 * 100 /$n))
-store1[H]=$percent"%"
-store1[T]=$percent1"%"
-echo ${!store1[@]}
-echo ${store1[@]}
+singlet[H]=$percent"%""Head"
+singlet[T]=$percent1"%""Tail"
+echo ${!singlet[@]}
+echo ${singlet[@]}
+echo "sorting of combination"
+echo $(printf '%s\n' "${singlet[@]}" | sort -n )
+echo "wininng combination is"
+echo $(printf '%s\n' "${singlet[@]}" | sort -n | tail -1)
+
 }
 echo " "
 singlet
@@ -72,12 +78,17 @@ local percent=$(( $count*100 /$n ))
 local percent1=$(($count1 * 100 /$n))
 local percent2=$(( $count2*100 /$n ))
 local percent3=$(($count3 * 100 /$n))
-doublet[HH]=$percent"%"
-doublet[HT]=$percent1"%"
-doublet[TT]=$percent2"%"
-doublet[TH]=$percent3"%"
+doublet[HH]=$percent"%""HH"
+doublet[HT]=$percent1"%""HT"
+doublet[TT]=$percent2"%""TH"
+doublet[TH]=$percent3"%""TT"
 echo ${doublet[@]}
 echo ${!doublet[@]}
+echo "sorting of combination"
+echo $(printf '%s\n' "${doublet[@]}" | sort -n)
+echo "wininng combination is"
+echo $(printf '%s\n' "${doublet[@]}" | sort -n | tail -1)
+
 }
 echo  " "
 echo "doublet combination"
@@ -94,7 +105,7 @@ count5=0
 count6=0
 count7=0
 declare -A  triplet
-declare -A store
+declare -A local store
 for((j=1;j<=20;j++))
 do
 local coin1=$((RANDOM%2))
@@ -152,17 +163,23 @@ local percent5=$(($count5 * 100 /$n))
 local percent6=$(( $count6*100 /$n ))
 local percent7=$(($count7 * 100 /$n))
 
-triplet[HHH]=$percent"%"
-triplet[HHT]=$percent1"%"
-triplet[HTT]=$percent2"%"
-triplet[TTT]=$percent3"%"
-triplet[TTH]=$percent4"%"
-triplet[THH]=$percent5"%"
-triplet[THT]=$percent6"%"
-triplet[HTH]=$percent7"%"
+triplet[HHH]=$percent"%""HHH"
+triplet[HHT]=$percent1"%""HHT"
+triplet[HTT]=$percent2"%""HTT"
+triplet[TTT]=$percent3"%""TTT"
+triplet[TTH]=$percent4"%""TTH"
+triplet[THH]=$percent5"%""THH"
+triplet[THT]=$percent6"% THT"
+triplet[HTH]=$percent7"% HTH"
 echo ${!triplet[@]}
 echo ${triplet[@]}
+echo "sorting of triplet combination"
+
+echo $(printf '%s\n' "${triplet[@]}" | sort -n)
+echo "wininng combination is"
+echo $(printf '%s\n' "${triplet[@]}" | sort -n | tail -1)
 }
 echo  " "
 echo "triplet combination"
 triplet
+
